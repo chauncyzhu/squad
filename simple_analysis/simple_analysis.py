@@ -4,8 +4,8 @@ import json
 """
     数据导入，主要是json数据，train是训练集，dev是测试集
 """
-#SOURCE_DATA = dp.TRAIN_DATA  #训练数据
-SOURCE_DATA = dp.DEV_DATA  #测试数据
+SOURCE_DATA = dp.TRAIN_DATA  #训练数据
+#SOURCE_DATA = dp.DEV_DATA  #测试数据
 
 """
     数据结构
@@ -31,8 +31,10 @@ version = total_data['version']  #版本号
 multi_answer = [0]*6
 answer_in_question_num = 0 #answer在question中出现的个数
 question_answer_num = 0
+paragraphs_len = 0
 for one in data:
     paragraphs = one['paragraphs']  #段落
+    paragraphs_len += len(paragraphs)
     print("paragraphs lenght:",len(paragraphs))
     for two in paragraphs:
         context_list = two['context'].split(".")  #原文，分成不同的句子
@@ -62,4 +64,4 @@ for one in data:
                     multi_answer[i] += 1
 print("multi_answer:",multi_answer)
 print("question answer number:",question_answer_num,"answer in question num:",answer_in_question_num)
-print("data length:",len(data),"verson:",version)
+print("data length:",len(data),"paragraph length:",paragraphs_len,"verson:",version)
