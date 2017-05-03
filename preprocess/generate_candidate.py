@@ -57,11 +57,15 @@ def main():
     filename = dp.DEV_PD   #csv数据
     pd_data = reader.load_simple_dataset(filename)  #没有经过分词
     #pd_data = pd_data.head(10)  #这里仅仅取10个做测试
-    pd_candidate = pd.DataFrame(columns=['candidate_answer', 'sentence','sentence_extend_candidate'])
+    pd_candidate = pd.DataFrame(columns=['passage_id','candidate_answer', 'sentence','sentence_extend_candidate'])
     begin = time.time()  # 起始
     pd_passage = pd_data[["passage","passage_id"]].drop_duplicates()   #选取无重复的passage
+    #选择部分数据
+    pd_passage = pd_passage[pd_passage["passage_id"]<100]
+
+    print(pd_passage)
     for index, row in pd_passage.iterrows():  # 这里迭代的是每篇文章以及对应的question，传入的是pd_data的一行
-        print("now index num:", index)
+        print("now passage num:", int(row['passage_id']))
         pd_candidate = pd.concat([pd_candidate,candidate_answer(row['passage'],row['passage_id'])],ignore_index=0)
     print(pd_candidate)
     pd_candidate.to_csv(dp.CANDIDATE_ANSWERS,encoding="utf8")
