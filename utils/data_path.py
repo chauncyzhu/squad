@@ -2,6 +2,7 @@
 """
     数据路径
 """
+import time
 ROOT_PATH = "C:/Users/chauncy/Desktop/SQuAD/"
 
 TRAIN_DATA = ROOT_PATH + "train-v1.1.json"  #训练数据
@@ -10,6 +11,7 @@ DEV_DATA = ROOT_PATH + "dev-v1.1.json" #dev
 TRAIN_PD = ROOT_PATH + "train.csv"
 DEV_PD = ROOT_PATH + "dev.csv"
 CANDIDATE_ANSWERS = ROOT_PATH + "candidate_answers.csv"
+EVALUATION_TXT = ROOT_PATH + "evaluation/evaluation.txt"   #加上时间戳
 
 
 # stanford nlp配置
